@@ -1,0 +1,38 @@
+.navbar-inverse {
+    background-image: url(img/r.gif);
+    border-color: #080808;
+}
+.navbar-inverse  .navbar-nar > li > a
+{
+    color:deepskyblue
+}
+.course{
+    list-style:none;
+}
+.course > li {
+    position:relative;
+    margin-bottom :30px;
+}
+    .course > li .date {
+        text-align: center;
+      background-image: url('img/a.jpg');
+      color:white;
+      width:100px;
+      border-radius:8px;
+  }
+ .course >li  .details{
+     position:absolute;
+     top:0;
+     left:120px;
+ }
+ .course > li .lecture{
+        
+ }
+ .course > li .action{
+     display:none;
+     left:70px;
+     position:absolute;
+ }
+ .course >li:hover .action{
+     display:block;
+ }
