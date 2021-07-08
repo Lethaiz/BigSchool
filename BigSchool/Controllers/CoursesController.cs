@@ -1,5 +1,6 @@
 ﻿
 using System.Collections.Generic;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -32,7 +33,8 @@ namespace lab4.Controllers
                 objCourse.ListCategory = context.Category.ToList();
                 return View("Create", objCourse);
             }
-            ApplicationUser user = System.Web.HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>().FindById(System.Web.HttpContext.Current.User.Identity.GetUserId());
+            ApplicationUser user = System.Web.HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>()
+                .FindById(System.Web.HttpContext.Current.User.Identity.GetUserId());
             objCourse.LeturerIdId = user.Id;
 
             context.Course.Add(objCourse);
@@ -69,5 +71,52 @@ namespace lab4.Controllers
             }
             return View(courses);
         }
+        [Authorize]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+
+        public ActionResult Edit(int id)
+        {
+
+            BigSchoolContext context = new BigSchoolContext();
+            List<Course> listBook = context.Course.ToList();
+            Course course = context.Course.SingleOrDefault(p => p.Id == id);
+            course = new Course();
+            if (course != null)
+            {
+                return HttpNotFound();
+            }
+            return View(course);
+
+        }
+        [HttpPost]
+
+        public ActionResult Edit(Course course)
+        {
+
+            BigSchoolContext context = new BigSchoolContext();
+            List<Course> listBook = context.Course.ToList();
+            Course dbUpdate = context.Course.SingleOrDefault(p => p.Id == course.Id);
+                if (dbUpdate != null)
+                {
+                context.Course.AddOrUpdate(course);
+                    context.SaveChanges();
+                }
+                return RedirectToAction("index");
+            }
+
+            //    BigSchoolContext context = new BigSchoolContext();
+            //    var UserId = User.Identity.GetUserId();
+            //    var course = context.Course.Single(m => m.Id == id && m.LeturerIdId == UserId);
+            //    var viewModel = new Course
+            //    {
+
+            //    ListCategory = context.Category.ToList()
+            //    Datetime = course.Datetime.ToString()
+
+
+            //    }
+            //    return View();
+        }
+      
     }
-}

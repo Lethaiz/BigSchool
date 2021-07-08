@@ -29,10 +29,14 @@
         
  }
  .course > li .action{
-     display:none;
-     left:70px;
+     
+     left:120px;
      position:absolute;
  }
  .course >li:hover .action{
      display:block;
+ }
+ .clear
+ {
+    clear:both;
  }
