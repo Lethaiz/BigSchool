@@ -11,7 +11,7 @@ namespace BigSchool.Models
             : base("name=BigSchoolContext2")
         {
         }
-
+        public virtual DbSet<Following> Following { get; set; }
         public virtual DbSet<Attendance> Attendance { get; set; }
         public virtual DbSet<Category> Category { get; set; }
         public virtual DbSet<Course> Course { get; set; }

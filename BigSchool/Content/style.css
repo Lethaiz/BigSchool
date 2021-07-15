@@ -6,13 +6,15 @@
 {
     color:deepskyblue
 }
-.course{
-    list-style:none;
+.course {
+    list-style: none;
+    
 }
-.course > li {
-    position:relative;
-    margin-bottom :30px;
-}
+    .course > li {
+        position: relative;
+        margin-bottom: 30px;
+        
+    }
     .course > li .date {
         text-align: center;
       background-image: url('img/a.jpg');
@@ -20,11 +22,13 @@
       width:100px;
       border-radius:8px;
   }
- .course >li  .details{
-     position:absolute;
-     top:0;
-     left:120px;
- }
+        .course > li .details {
+            position: absolute;
+            top: 0;
+            left: 120px;
+            border: 1px black solid;
+            margin-bottom:50px;
+        }
  .course > li .lecture{
         
  }

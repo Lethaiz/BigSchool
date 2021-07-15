@@ -1,10 +1,10 @@
 ﻿
+
 @{
-    ViewBag.Title = "Mine";
+    ViewBag.Title = "LectureIamGoing";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Mine</h2>
 <div class="row">
     <ul class="course">
         @foreach (var course in Model)
@@ -15,26 +15,25 @@
                     <div class="month">
                         @course.Datetime.ToString("MM")
                     </div>
-                    <div class="month">
+                    <div class="day">
                         @course.Datetime.ToString("dd")
                     </div>
                 </div>
                 <div class="details">
                     <span class="lecture">
-                        @course.Name
+                        <b>Giảng viên:</b>
+                        @course.LectureName
                     </span>
+                    <br />
                     <span class="category">
+                        <b>Môn học:</b>
                         @course.Category.Name
-                    </span>
-                </div>
-                <div class="clear"></div>
-                <div class="action">
-                    <a href="@Url.Action("Edit","Courses",new {id=course.Id })">Edit</a>
 
-                    <a href="@Url.Action("Delete","Courses",new {id=course.Id })">Delete</a>
+                    </span>
 
                 </div>
             </li>
         }
     </ul>
 </div>
+

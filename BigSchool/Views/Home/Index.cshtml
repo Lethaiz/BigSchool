@@ -1,6 +1,4 @@
-﻿@{
-    ViewBag.Title = "Home Page";
-}
+﻿
 
 @{
     ViewBag.Title = "Home Page";
@@ -18,20 +16,51 @@
 
             <li>
                 <div class="date">
-                    <div class="month">
+
+                    <div class="day">
                         @course.Datetime.ToString()
+                 
                     </div>
-         
                 </div>
                 <div class="details">
                     <span class="lecture">
                         @course.Name
+                        @if (course.isLogin)
+                        {
+                            if (course.isShowFollow)
+                            {
+                                <button data-user-id="@course.LeturerIdId" class="btn btn-default btn-sm js-tongle-follow" style=" color: cyan;
+                                background-image: url('../../Content/img/z.jpg'); font-size: 13px">Follow</button>
+
+                            }
+                            else
+                            {
+                                <button data-user-id="@course.LeturerIdId" class="btn btn-success btn-sm js-tongle-follow " style=" color: blue; 
+                                background-image: url('../../Content/img/z.jpg'); font-size: 13px">Following</button>
+
+                            }
+                        }
                     </span>
+                    <br />
                     <span class="category">
                         @course.Category.Name
+                        @if (course.isLogin)
+                        {
+                            if (course.isShowGoing)
+                            {
+                                <button data-couse-id="@course.Id" class="btn btn-default btn-sm js-toggle-attendance" style="
+                                color:gold;        background-image: url('../../Content/img/z.jpg');font-size:13px">Wanna Going??</button>
 
+                            }
+                            else
+                            {
+                                <button data-couse-id="@course.Id" class="btn btn-info btn-sm js-toggle-attendance"style="
+                                  color:red ;     background-image: url('../../Content/img/z.jpg');font-size:13px">Going</button>
+
+                            }
+                        }
                     </span>
-                    <button data-couse-id="@course.Id" class="btn btn-default btn-sm js-toggle-attendance">Going</button>
+
                 </div>
             </li>
         }
@@ -43,21 +72,58 @@
                 $(".js-toggle-attendance").click(function (e) {
                     var button = $(e.target);
                     $.post("/api/attendances", { Id: button.attr("data-couse-id") })
-                        .done(function () {
-                            alert("Register course sucessfully!")
-                            button
-                                .removeClass("btn-default")
-                                .addClass("btn-info")
-                                .text("Going");
-
+                        .done(function (result) {
+                            if (result == "cancel") {
+                                alert("Cancel register course sucessfully!")
+                                button
+                                    .removeClass("btn-info")
+                                    .addClass("btn-default")
+                                    .text("Going?");
+                            } else {
+                                alert("Register course sucessfully!")
+                                button
+                                    .removeClass("btn-default")
+                                    .addClass("btn-info")
+                                    .text("Going");
+                            }
                         })
                         .fail(function () {
 
                             alert("something fail");
                         });
                 });
+
+                $(".js-tongle-follow").click(function (e) {
+                    var button = $(e.target);
+                    $.post("/api/followings", { FolloweeId: button.attr("data-user-id") })
+                        .done(function (result) {
+                            if (result == "cancel") {
+                                $('.js-tongle-follow').each(function (i, obj) {
+                                    if ($(this).attr('data-user-id') == followee) {
+                                        $(this).removeClass("btn-success")
+                                            .addClass("btn-default")
+                                            .text("Follow");
+                                    }
+                                });
+                                alert("unFollow sucessfully")
+                            } else {
+                                $('.js-tongle-follow').each(function (i, obj) {
+                                    if ($(this).attr('data-user-id') == followee) {
+                                        $(this).removeClass("btn-default")
+                                            .addClass("btn-success")
+                                            .text("Following");
+                                    }
+                                });
+                                alert("Follow sucessfully")
+                            }
+                        })
+                        .fail(function () {
+                            alert("Something fail");
+                        });
+                });
             });
         </script>
     }
+
 </div>
 

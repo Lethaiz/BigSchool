@@ -182,6 +182,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AttendancesController.cs" />
     <Compile Include="Controllers\CoursesController.cs" />
+    <Compile Include="Controllers\FollowingsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
@@ -192,6 +193,7 @@
     <Compile Include="Models\BigSchoolContext.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Course.cs" />
+    <Compile Include="Models\Following.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -204,6 +206,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\img\a.jpg" />
     <Content Include="Content\img\r.gif" />
+    <Content Include="Content\img\z.jpg" />
     <Content Include="Content\style.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -260,6 +263,8 @@
     <Content Include="Views\Courses\Attending.cshtml" />
     <Content Include="Views\Courses\Mine.cshtml" />
     <Content Include="Views\Courses\Edit.cshtml" />
+    <Content Include="Views\Courses\LectureIamGoing.cshtml" />
+    <Content Include="Views\Courses\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

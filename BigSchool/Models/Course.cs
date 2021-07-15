@@ -30,10 +30,18 @@ namespace BigSchool.Models
         [StringLength(250)]
         public string Name { get; set; }
 
+        public string LectureName;
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Attendance> Attendance { get; set; }
 
         public List<Category> ListCategory = new List<Category>();
         public virtual Category Category { get; set; }
+      
+            public bool isLogin = false;
+            public bool isShowGoing = false;
+            public bool isShowFollow = false;
+        
+
     }
 }
